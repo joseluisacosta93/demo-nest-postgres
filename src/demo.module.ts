@@ -1,14 +1,32 @@
 import { Module } from '@nestjs/common';
-import { databaseProviders } from './database.provider';
 import { DemoController } from './demo.controller';
 import { DemoRepository } from './demo.repository';
-import { DatabaseModule } from './database.module';
-import { demoProviders } from './demo.provider';
+
 import { DemoHandler } from './demo.handler';
+import { UserModule } from './user/user.module';
+import { Demo } from './demo.schema';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [ UserModule,TypeOrmModule.forRoot({
+
+        type: 'postgres',
+        host: 'localhost',
+        port: 5432,
+        username: 'postgres',
+        password: 'postgres',
+        database: 'demo',
+        entities: [Demo],
+        synchronize: true,
+
+    autoLoadEntities: true,
+  }),
+    TypeOrmModule.forFeature([
+      Demo,
+
+    ]),
+  ],
   controllers: [DemoController],
-  providers: [...demoProviders, DemoRepository, DemoHandler],
+  providers: [ DemoRepository, DemoHandler],
 })
 export class DemoModule {}

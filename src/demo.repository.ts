@@ -2,11 +2,12 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Demo } from './demo.schema';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DemoRepository {
   constructor(
-    @Inject('DemoRepository')
+    @InjectRepository(Demo)
     private readonly demoRepository: Repository<Demo>,
   ) {}
 
@@ -25,4 +26,6 @@ export class DemoRepository {
   async delete(id: number) {
     return await this.demoRepository.delete(id);
   }
+
+  
 }
