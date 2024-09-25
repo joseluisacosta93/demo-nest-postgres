@@ -1,5 +1,4 @@
-//demo.service.ts
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Demo } from './demo.schema';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,6 +25,4 @@ export class DemoRepository {
   async delete(id: number) {
     return await this.demoRepository.delete(id);
   }
-
-  
 }
