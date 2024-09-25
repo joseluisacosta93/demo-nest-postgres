@@ -1,6 +1,6 @@
 //establish the connection with postgres with the help of typeorm
 import { DataSource } from 'typeorm';
-import { Demo } from './demo.entity';
+import { Demo } from './demo.schema';
 import { demoProviders } from './demo.provider';
 
 export const databaseProviders = [
@@ -19,6 +19,6 @@ export const databaseProviders = [
       });
       await dataSource.initialize();
       return dataSource;
-    }
+    },
   },
 ];

@@ -1,12 +1,12 @@
-import { DataSource } from "typeorm";
-import { Demo } from "./demo.entity";
+import { DataSource } from 'typeorm';
+import { Demo } from './demo.schema';
 
 export const demoProviders = [
   {
-    provide: "DemoRepository",
+    provide: 'DemoRepository',
     useFactory: async (dataSource: DataSource) => {
       return dataSource.getRepository(Demo);
     },
-    inject: ["DATABASE_CONNECTION"],
+    inject: ['DATABASE_CONNECTION'],
   },
 ];
