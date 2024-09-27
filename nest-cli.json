@@ -1,8 +1,24 @@
 {
-  "$schema": "https://json.schemastore.org/nest-cli",
-  "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
-  "compilerOptions": {
-    "deleteOutDir": true
+  "projects": {
+    "my-app": {
+      "$schema": "https://json.schemastore.org/nest-cli",
+      "collection": "@nestjs/schematics",
+      "type": "application",
+      "sourceRoot": "src",
+      "entryFile": "src/main",
+      "compilerOptions": {
+        "deleteOutDir": true
+      }
+    },
+    "benchmark": {
+      "$schema": "https://json.schemastore.org/nest-cli",
+      "collection": "@nestjs/schematics",
+      "type": "application",
+      "sourceRoot": "src",
+      "entryFile": "src/benchmark",
+      "compilerOptions": {
+        "deleteOutDir": true
+      }
+    }
   }
 }
