@@ -23,10 +23,12 @@ async function bootstrap() {
     }; 
   });
   console.log( `${users.length} users created`);
-  await timer('getting users', async () => {
+  const result = await timer('getting users', async () => {
     const getUsersHandler = app.get(GetUsersHandler);
-    const result = await getUsersHandler.execute();
-    console.log( `${result.length} users found`);	
+    const result = await getUsersHandler.execute();	
+    console.log(result);	
+    return result;
   });
+  console.log( `${result.length} users found`);	
 }
 bootstrap();
