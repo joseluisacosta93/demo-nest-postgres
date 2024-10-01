@@ -19,11 +19,15 @@ export class UsersRepository {
     return this.userRepository.save(user);
   }
 
-  async update(id: number, user: Users) {
-    return this.userRepository.update(id, user);
+  async update(id: number, query: {name: string; email: string}) {
+    return this.userRepository.update(id, query);
   }
 
   async delete(id: number) {
     return this.userRepository.delete(id);
+  }
+
+  async findById(id) {
+    return this.userRepository.findOne({where: {id}});
   }
 }

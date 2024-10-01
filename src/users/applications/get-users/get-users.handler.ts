@@ -8,7 +8,8 @@ import { GetUsersQuery } from './get-users.query';
 export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async execute() {
+  async execute(id=null) {
+    if (id) return this.usersRepository.findById(id);
     return this.usersRepository.findAll();
   }
 }
