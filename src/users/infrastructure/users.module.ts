@@ -9,10 +9,11 @@ import { UpdateUserHandler } from '../applications/update-user/update-user.handl
 import { UsersController } from './users.controller';
 import { UsersRepository } from './repositories/users.repository';
 import { Users } from './schema/users.schema';
+import { DeleteUserHandler } from '../applications/delete-user/delete-user.handler';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([Users])],
   controllers: [UsersController],
-  providers: [UsersRepository, CreateUserHandler, GetUsersHandler,UpdateUserHandler],
+  providers: [UsersRepository, CreateUserHandler, GetUsersHandler,UpdateUserHandler,DeleteUserHandler],
 })
 export class UsersModule {}
