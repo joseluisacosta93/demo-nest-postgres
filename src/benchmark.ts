@@ -15,7 +15,7 @@ async function bootstrap() {
   console.log('Starting  APP');
   const app = await NestFactory.create(AppModule);
   console.log('Benchmark');
-  const numUsers=10000
+  const numUsers=10000;
   const users = await getUserData(numUsers);
 
   console.log('starting benchmarks');
@@ -50,10 +50,10 @@ async function bootstrap() {
 
   let udpatedUsers = [];
   await timer('updating users', async () => {
-    for (let i = 0; i < numUsers; i++) {
+    for (const user of result) {
       const updateUserHandler = app.get(UpdateUserHandler);
       const result = await updateUserHandler.execute({
-        id:i+1,
+        id:user.id,
         query:{
           name:'updated',
           email:'updated@gmail.com'
@@ -67,7 +67,7 @@ async function bootstrap() {
 
   let deletedUsers = [];
   await timer('Deleting users', async () => {
-    for (const user of users) {
+    for (const user of result) {
       const deleteUserHandler = app.get(DeleteUserHandler);
       await deleteUserHandler.execute({
         id:user.id,
